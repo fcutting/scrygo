@@ -4,7 +4,7 @@ package scrygo
 // could obain and add to their collcetion (with a few minor exceptions).
 //
 // Cards are the API's most complex object. You are encouraged to thoroughly
-// read this document and also the article about layouts and images
+// read this document and also the article about layouts and images.
 //
 // More info: https://scryfall.com/docs/api/cards
 type card struct {
@@ -27,8 +27,8 @@ type card struct {
 	URI               string `json:"uri"`
 
 	// Gameplay Fields
-	AllParts       []struct{} `json:"all_parts"`  // TODO: Create this object
-	CardFaces      []struct{} `json:"card_faces"` // TODO: Create this object
+	AllParts       []struct{} `json:"all_parts"` // TODO: Create this object
+	CardFaces      []cardFace `json:"card_faces"`
 	CMC            float64    `json:"cmc"`
 	ColorIdentity  []string   `json:"card_identity"`
 	ColorIndicator []string   `json:"color_indicator"`
@@ -97,4 +97,34 @@ type card struct {
 	SecurityStamp    string   `json:"security_stamp"`
 	Watermark        string   `json:"watermark"`
 	Preview          struct{} `json:"preview"` // TODO: Create this object
+}
+
+// Multiface cards have a "card_faces" property containing at least two Card
+// Face objects.
+//
+// More info: https://scryfall.com/docs/api/cards
+type cardFace struct {
+	Artist          string   `json:"artist"`
+	ArtistID        string   `json:"artist_id"`
+	CMC             float64  `json:"cmc"`
+	ColorIndicator  []string `json:"color_indicator"`
+	Colors          []string `json:"colors"`
+	Defense         string   `json:"defense"`
+	FlavorText      string   `json:"flavor_text"`
+	IllustrationID  string   `json:"illustration_id"`
+	ImageURIs       struct{} `json:"images_uris"` // TODO: Create this object
+	Layout          string   `json:"layout"`
+	Loyalty         string   `json:"loyalty"`
+	ManaCost        string   `json:"mana_cost"`
+	Name            string   `json:"string"`
+	Object          string   `json:"object"`
+	OracleID        string   `json:"oracle_id"`
+	OracleText      string   `json:"oracle_text"`
+	Power           string   `json:"power"`
+	PrintedName     string   `json:"printed_name"`
+	PrintedText     string   `json:"printed_text"`
+	PrintedTypeLine string   `json:"printed_type_line"`
+	Toughness       string   `json:"toughness"`
+	TypeLine        string   `json:"type_line"`
+	Watermark       string   `json:"watermark"`
 }
