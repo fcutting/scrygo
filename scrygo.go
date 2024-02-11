@@ -27,28 +27,28 @@ type card struct {
 	URI               string `json:"uri"`
 
 	// Gameplay Fields
-	AllParts       []struct{} `json:"all_parts"` // TODO: Create this object
-	CardFaces      []cardFace `json:"card_faces"`
-	CMC            float64    `json:"cmc"`
-	ColorIdentity  []string   `json:"card_identity"`
-	ColorIndicator []string   `json:"color_indicator"`
-	Colors         []string   `json:"colors"`
-	Defense        string     `json:"defense"`
-	EDHRecRank     int        `json:"edhrec_rank"`
-	HandModifier   string     `json:"hand_modifier"`
-	Keywords       []string   `json:"keywords"`
-	Legalities     struct{}   `json:"legalities"` // TODO: Create this object
-	LifeModifier   string     `json:"life_modifier"`
-	Loyalty        string     `json:"loyalty"`
-	ManaCost       string     `json:"mana_cost"`
-	Name           string     `json:"name"`
-	OracleText     string     `json:"oracle_text"`
-	PennyRank      int        `json:"penny_rank"`
-	Power          string     `json:"power"`
-	ProducedMana   []string   `json:"produced_mana"`
-	Reserved       bool       `json:"reserved"`
-	Toughness      string     `json:"toughness"`
-	TypeLine       string     `json:"type_line"`
+	AllParts       []relatedCard `json:"all_parts"`
+	CardFaces      []cardFace    `json:"card_faces"`
+	CMC            float64       `json:"cmc"`
+	ColorIdentity  []string      `json:"card_identity"`
+	ColorIndicator []string      `json:"color_indicator"`
+	Colors         []string      `json:"colors"`
+	Defense        string        `json:"defense"`
+	EDHRecRank     int           `json:"edhrec_rank"`
+	HandModifier   string        `json:"hand_modifier"`
+	Keywords       []string      `json:"keywords"`
+	Legalities     struct{}      `json:"legalities"` // TODO: Create this object
+	LifeModifier   string        `json:"life_modifier"`
+	Loyalty        string        `json:"loyalty"`
+	ManaCost       string        `json:"mana_cost"`
+	Name           string        `json:"name"`
+	OracleText     string        `json:"oracle_text"`
+	PennyRank      int           `json:"penny_rank"`
+	Power          string        `json:"power"`
+	ProducedMana   []string      `json:"produced_mana"`
+	Reserved       bool          `json:"reserved"`
+	Toughness      string        `json:"toughness"`
+	TypeLine       string        `json:"type_line"`
 
 	// Print Fields
 	Artist           string   `json:"aritst"`
@@ -127,4 +127,18 @@ type cardFace struct {
 	Toughness       string   `json:"toughness"`
 	TypeLine        string   `json:"type_line"`
 	Watermark       string   `json:"watermark"`
+}
+
+// Cards that are closely related to other cards (because they call them by
+// name, or generate a token, or meld, etc) have a "all_parts" property that
+// contains Related Card objects.
+//
+// More info: https://scryfall.com/docs/api/cards
+type relatedCard struct {
+	ID        string `json:"id"`
+	Object    string `json:"object"`
+	Component string `json:"component"`
+	Name      string `json:"name"`
+	TypeLine  string `json:"type_line"`
+	URI       string `json:"uri"`
 }
