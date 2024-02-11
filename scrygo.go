@@ -37,7 +37,7 @@ type card struct {
 	EDHRecRank     int           `json:"edhrec_rank"`
 	HandModifier   string        `json:"hand_modifier"`
 	Keywords       []string      `json:"keywords"`
-	Legalities     struct{}      `json:"legalities"` // TODO: Create this object
+	Legalities     legalities    `json:"legalities"`
 	LifeModifier   string        `json:"life_modifier"`
 	Loyalty        string        `json:"loyalty"`
 	ManaCost       string        `json:"mana_cost"`
@@ -141,4 +141,32 @@ type relatedCard struct {
 	Name      string `json:"name"`
 	TypeLine  string `json:"type_line"`
 	URI       string `json:"uri"`
+}
+
+// Describes the legality of the card across play formats.
+//
+// More info: https://scryfall.com/docs/api/cards
+type legalities struct {
+	Standard        string `json:"standard"`
+	Future          string `json:"future"`
+	Historic        string `json:"historic"`
+	Timeless        string `json:"timeless"`
+	Gladiator       string `json:"gladiator"`
+	Pioneer         string `json:"pioneer"`
+	Explorer        string `json:"explorer"`
+	Modern          string `json:"modern"`
+	Legacy          string `json:"legacy"`
+	Pauper          string `json:"pauper"`
+	Vintage         string `json:"vintage"`
+	Penny           string `json:"penny"`
+	Commander       string `json:"commander"`
+	Oathbreaker     string `json:"Oathbreaker"`
+	StandardBrawl   string `json:"standardbrawl"`
+	Brawl           string `json:"brawl"`
+	Alchemy         string `json:"alchemy"`
+	PauperCommander string `json:"paupercommander"`
+	Duel            string `json:"duel"`
+	OldSchool       string `json:"oldschool"`
+	PreModern       string `json:"premodern"`
+	PrEDH           string `json:"predh"`
 }
