@@ -96,7 +96,7 @@ type card struct {
 	VariationOf      string      `json:"variation_of"`
 	SecurityStamp    string      `json:"security_stamp"`
 	Watermark        string      `json:"watermark"`
-	Preview          struct{}    `json:"preview"` // TODO: Create this object
+	Preview          preview     `json:"preview"`
 
 	// The following fields are not returned as part of the Scryfall API, but
 	// are added and populated by scrygo for convenience
@@ -228,4 +228,11 @@ type related struct {
 	TCGPlayerInfiniteArticles string `json:"tcgplayer_infinite_articles"`
 	TCGPlayerInfiniteDecks    string `json:"tcgplayer_infinite_decks"`
 	EDHRec                    string `json:"edhrec"`
+}
+
+// An object providing information of when the card was initially previewed.
+type preview struct {
+	PreviewedAt string `json:"previewed_at"` // In the format "YYYY-MM-DD"
+	SourceURI   string `json:"source_uri"`
+	Source      string `json:"source"`
 }
