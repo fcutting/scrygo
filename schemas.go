@@ -108,29 +108,29 @@ type card struct {
 //
 // More info: https://scryfall.com/docs/api/cards
 type cardFace struct {
-	Artist          string   `json:"artist"`
-	ArtistID        string   `json:"artist_id"`
-	CMC             float64  `json:"cmc"`
-	ColorIndicator  []string `json:"color_indicator"`
-	Colors          []string `json:"colors"`
-	Defense         string   `json:"defense"`
-	FlavorText      string   `json:"flavor_text"`
-	IllustrationID  string   `json:"illustration_id"`
-	ImageURIs       struct{} `json:"images_uris"` // TODO: Create this object
-	Layout          string   `json:"layout"`
-	Loyalty         string   `json:"loyalty"`
-	ManaCost        string   `json:"mana_cost"`
-	Name            string   `json:"string"`
-	Object          string   `json:"object"`
-	OracleID        string   `json:"oracle_id"`
-	OracleText      string   `json:"oracle_text"`
-	Power           string   `json:"power"`
-	PrintedName     string   `json:"printed_name"`
-	PrintedText     string   `json:"printed_text"`
-	PrintedTypeLine string   `json:"printed_type_line"`
-	Toughness       string   `json:"toughness"`
-	TypeLine        string   `json:"type_line"`
-	Watermark       string   `json:"watermark"`
+	Artist          string      `json:"artist"`
+	ArtistID        string      `json:"artist_id"`
+	CMC             float64     `json:"cmc"`
+	ColorIndicator  []string    `json:"color_indicator"`
+	Colors          []string    `json:"colors"`
+	Defense         string      `json:"defense"`
+	FlavorText      string      `json:"flavor_text"`
+	IllustrationID  string      `json:"illustration_id"`
+	ImageURIs       cardImagery `json:"image_uris"`
+	Layout          string      `json:"layout"`
+	Loyalty         string      `json:"loyalty"`
+	ManaCost        string      `json:"mana_cost"`
+	Name            string      `json:"string"`
+	Object          string      `json:"object"`
+	OracleID        string      `json:"oracle_id"`
+	OracleText      string      `json:"oracle_text"`
+	Power           string      `json:"power"`
+	PrintedName     string      `json:"printed_name"`
+	PrintedText     string      `json:"printed_text"`
+	PrintedTypeLine string      `json:"printed_type_line"`
+	Toughness       string      `json:"toughness"`
+	TypeLine        string      `json:"type_line"`
+	Watermark       string      `json:"watermark"`
 }
 
 // Cards that are closely related to other cards (because they call them by
