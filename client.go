@@ -1,7 +1,6 @@
 package scrygo
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 	"time"
@@ -31,10 +30,6 @@ func (c Client) sendGet(url string) (responseBody []byte, err error) {
 
 	if err != nil {
 		return nil, err
-	}
-
-	if resp == nil {
-		return nil, fmt.Errorf("failed to make HTTP request: %w", err)
 	}
 
 	defer resp.Body.Close()
