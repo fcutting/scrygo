@@ -51,52 +51,52 @@ type card struct {
 	TypeLine       string        `json:"type_line"`
 
 	// Print Fields
-	Artist           string   `json:"aritst"`
-	ArtistIDs        []string `json:"artist_ids"`
-	AttractionLights []string `json:"attraction_lights"`
-	Booster          bool     `json:"booster"`
-	BorderColor      string   `json:"border_color"`
-	CardBackID       string   `json:"card_back_id"`
-	CollectorNumber  string   `json:"collector_number"`
-	ContentWarning   bool     `json:"content_warning"`
-	Digital          bool     `json:"digital"`
-	Finishes         []string `json:"finishes"`
-	FlavorName       string   `json:"flavor_name"`
-	FlavorText       string   `json:"flavor_text"`
-	FrameEffects     []string `json:"frame_effects"`
-	Frame            string   `json:"frame"`
-	FullArt          bool     `json:"full_art"`
-	Games            []string `json:"games"`
-	HighresImage     bool     `json:"highres_image"`
-	IllustrationID   string   `json:"illustration_id"`
-	ImageStatus      string   `json:"image_status"`
-	ImageURIs        struct{} `json:"image_uris"` // TODO: Create this object
-	Oversized        bool     `json:"oversized"`
-	Prices           struct{} `json:"prices"` // TODO: Create this object
-	PrintedName      string   `json:"printed_name"`
-	PrintedText      string   `json:"printed_text"`
-	PrintedTypeLine  string   `json:"printed_type_line"`
-	Promo            bool     `json:"promo"`
-	PromoTypes       []string `json:"promo_types"`
-	PurchaseURIs     struct{} `json:"purchase_uris"` // TODO: Create this object
-	Rarity           string   `json:"rarity"`
-	RelatedURIs      struct{} `json:"related_uris"` // TODO: Create this object
-	ReleasedAt       string   `json:"released_at"`
-	Reprint          bool     `json:"reprint"`
-	ScryfallSetURI   string   `json:"scryfall_set_uri"`
-	SetName          string   `json:"set_name"`
-	SetSearchURI     string   `json:"set_search_uri"`
-	SetType          string   `json:"set_type"`
-	SetURI           string   `json:"set_uri"`
-	Set              string   `json:"set"`
-	SetID            string   `json:"set_id"`
-	StorySpotlight   bool     `json:"story_spotlight"`
-	Textless         bool     `json:"textless"`
-	Variation        bool     `json:"variation"`
-	VariationOf      string   `json:"variation_of"`
-	SecurityStamp    string   `json:"security_stamp"`
-	Watermark        string   `json:"watermark"`
-	Preview          struct{} `json:"preview"` // TODO: Create this object
+	Artist           string      `json:"aritst"`
+	ArtistIDs        []string    `json:"artist_ids"`
+	AttractionLights []string    `json:"attraction_lights"`
+	Booster          bool        `json:"booster"`
+	BorderColor      string      `json:"border_color"`
+	CardBackID       string      `json:"card_back_id"`
+	CollectorNumber  string      `json:"collector_number"`
+	ContentWarning   bool        `json:"content_warning"`
+	Digital          bool        `json:"digital"`
+	Finishes         []string    `json:"finishes"`
+	FlavorName       string      `json:"flavor_name"`
+	FlavorText       string      `json:"flavor_text"`
+	FrameEffects     []string    `json:"frame_effects"`
+	Frame            string      `json:"frame"`
+	FullArt          bool        `json:"full_art"`
+	Games            []string    `json:"games"`
+	HighresImage     bool        `json:"highres_image"`
+	IllustrationID   string      `json:"illustration_id"`
+	ImageStatus      string      `json:"image_status"`
+	ImageURIs        cardImagery `json:"image_uris"`
+	Oversized        bool        `json:"oversized"`
+	Prices           struct{}    `json:"prices"` // TODO: Create this object
+	PrintedName      string      `json:"printed_name"`
+	PrintedText      string      `json:"printed_text"`
+	PrintedTypeLine  string      `json:"printed_type_line"`
+	Promo            bool        `json:"promo"`
+	PromoTypes       []string    `json:"promo_types"`
+	PurchaseURIs     struct{}    `json:"purchase_uris"` // TODO: Create this object
+	Rarity           string      `json:"rarity"`
+	RelatedURIs      struct{}    `json:"related_uris"` // TODO: Create this object
+	ReleasedAt       string      `json:"released_at"`
+	Reprint          bool        `json:"reprint"`
+	ScryfallSetURI   string      `json:"scryfall_set_uri"`
+	SetName          string      `json:"set_name"`
+	SetSearchURI     string      `json:"set_search_uri"`
+	SetType          string      `json:"set_type"`
+	SetURI           string      `json:"set_uri"`
+	Set              string      `json:"set"`
+	SetID            string      `json:"set_id"`
+	StorySpotlight   bool        `json:"story_spotlight"`
+	Textless         bool        `json:"textless"`
+	Variation        bool        `json:"variation"`
+	VariationOf      string      `json:"variation_of"`
+	SecurityStamp    string      `json:"security_stamp"`
+	Watermark        string      `json:"watermark"`
+	Preview          struct{}    `json:"preview"` // TODO: Create this object
 }
 
 // Multiface cards have a "card_faces" property containing at least two Card
@@ -169,4 +169,21 @@ type legalities struct {
 	OldSchool       string `json:"oldschool"`
 	PreModern       string `json:"premodern"`
 	PrEDH           string `json:"predh"`
+}
+
+// Scryfall produces multiple sizes of images and image crops for each Card
+// object. Links to these images are available in each Card objects'
+// "image_uris" properties.
+//
+// You can also request "image" format for many of the card API methods and
+// receive a redirect to an image file
+//
+// More info: https://scryfall.com/docs/api/images
+type cardImagery struct {
+	PNG        string `json:"png"`
+	BorderCrop string `json:"border_crop"`
+	ArtCrop    string `json:"art_crop"`
+	Large      string `json:"large"`
+	Normal     string `json:"normal"`
+	Small      string `json:"small"`
 }
