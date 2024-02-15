@@ -72,7 +72,7 @@ type card struct {
 	ImageStatus      string      `json:"image_status"`
 	ImageURIs        cardImagery `json:"image_uris"`
 	Oversized        bool        `json:"oversized"`
-	Prices           struct{}    `json:"prices"` // TODO: Create this object
+	Prices           prices      `json:"prices"`
 	PrintedName      string      `json:"printed_name"`
 	PrintedText      string      `json:"printed_text"`
 	PrintedTypeLine  string      `json:"printed_type_line"`
@@ -186,4 +186,18 @@ type cardImagery struct {
 	Large      string `json:"large"`
 	Normal     string `json:"normal"`
 	Small      string `json:"small"`
+}
+
+// An object containing daily price information for this card, including "usd",
+// "usd_foil", "usd_etched", "eur", "eur_foil", "eur_etched", and "tix" prices
+// as strings.
+//
+// More info: https://scryfall.com/docs/api/cards
+type prices struct {
+	USD       string `json:"usd"`
+	USDFoil   string `json:"usd_foil"`
+	USDEtched string `json:"usd_etched"`
+	EUR       string `json:"eur"`
+	EURFoil   string `json:"eur_foil"`
+	TIX       string `json:"tix"`
 }
