@@ -1,6 +1,8 @@
 package scrygo
 
 import (
+	"fmt"
+	"io"
 	"net/http"
 	"time"
 )
@@ -20,4 +22,20 @@ type Client struct {
 
 	// the http client used for requests
 	HTTPClient *http.Client
+}
+
+func (c Client) sendGet(url string) (responseBody []byte, err error) {
+	resp, err := c.HTTPClient.Get(url)
+
+	if err != nil {
+		return nil, err
+	}
+
+	if resp == nil {
+		return nil, fmt.Errorf("failed to make HTTP request: %w", err)
+	}
+
+	defer resp.Body.Close()
+
+	return io.ReadAll(resp.Body)
 }
