@@ -78,7 +78,7 @@ type card struct {
 	PrintedTypeLine  string      `json:"printed_type_line"`
 	Promo            bool        `json:"promo"`
 	PromoTypes       []string    `json:"promo_types"`
-	PurchaseURIs     struct{}    `json:"purchase_uris"` // TODO: Create this object
+	PurchaseURIs     purchase    `json:"purchase_uris"`
 	Rarity           string      `json:"rarity"`
 	RelatedURIs      struct{}    `json:"related_uris"` // TODO: Create this object
 	ReleasedAt       string      `json:"released_at"`
@@ -97,6 +97,10 @@ type card struct {
 	SecurityStamp    string      `json:"security_stamp"`
 	Watermark        string      `json:"watermark"`
 	Preview          struct{}    `json:"preview"` // TODO: Create this object
+
+	// The following fields are not returned as part of the Scryfall API, but
+	// are added and populated by scrygo for convenience
+	Purchasable bool
 }
 
 // Multiface cards have a "card_faces" property containing at least two Card
@@ -200,4 +204,17 @@ type prices struct {
 	EUR       string `json:"eur"`
 	EURFoil   string `json:"eur_foil"`
 	TIX       string `json:"tix"`
+}
+
+// An object providing URIs to this card's listing on major marketplace. Omitted
+// if the card is unpurchasable.
+//
+// NOTE: If the card is not purchasable, the "Purchasable" property in the
+// "card" object will be false.
+//
+// More info: https://scryfall.com/docs/api/cards
+type purchase struct {
+	TCGPlayer   string `json:"tcgplayer"`
+	Cardmarket  string `json:"card_market"`
+	Cardhoarder string `json:"card_hoarder"`
 }
