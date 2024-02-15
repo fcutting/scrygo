@@ -24,6 +24,8 @@ type Client struct {
 	HTTPClient *http.Client
 }
 
+// Sends a GET request to the provided URL and returns the response body while
+// handling the closing of the response body.
 func (c Client) sendGet(url string) (responseBody []byte, err error) {
 	resp, err := c.HTTPClient.Get(url)
 
