@@ -80,7 +80,7 @@ type card struct {
 	PromoTypes       []string    `json:"promo_types"`
 	PurchaseURIs     purchase    `json:"purchase_uris"`
 	Rarity           string      `json:"rarity"`
-	RelatedURIs      struct{}    `json:"related_uris"` // TODO: Create this object
+	RelatedURIs      related     `json:"related_uris"`
 	ReleasedAt       string      `json:"released_at"`
 	Reprint          bool        `json:"reprint"`
 	ScryfallSetURI   string      `json:"scryfall_set_uri"`
@@ -217,4 +217,15 @@ type purchase struct {
 	TCGPlayer   string `json:"tcgplayer"`
 	Cardmarket  string `json:"card_market"`
 	Cardhoarder string `json:"card_hoarder"`
+}
+
+// An object providing URIs to this card's listing on other Magic: The Gathering
+// online resources.
+//
+// More info: https://scryfall.com/docs/api/cards
+type related struct {
+	Gatherer                  string `json:"gatherer"`
+	TCGPlayerInfiniteArticles string `json:"tcgplayer_infinite_articles"`
+	TCGPlayerInfiniteDecks    string `json:"tcgplayer_infinite_decks"`
+	EDHRec                    string `json:"edhrec"`
 }
